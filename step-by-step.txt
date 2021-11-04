@@ -1,0 +1,39 @@
+1. Activate virtual environment in CMD
+2. Go to project folder in CMD
+3. python manage.py runserver
+4. Add django apps:
+4.1 Stop server
+4.2 python manage.py startapp blog
+4.3 python manage.py startapp events (Events on start page)
+4.4 git add . + git commit -> push to GitHub
+5. Add models in App -> models.py
+6. class Event(models.Model):   create class Event with parent Model in db
+6.1 event_image = models.ImageField(upload_to='event_images/')  create column "event_image" in table Event
+6.2 event_text = models.CharField(max_length=300)               create column "event_text" in table Event
+7. Update migration - to know db that new Apps is created
+7.1 python manage.py migrate        migration for pre created Apps
+7.2 Go to setting.py, add in INSTALLED_APPS 'events.apps.EventsConfig' (see in folder events -> apps.py)
+7.3 Create folder 'media' in root directory
+7.4 Add "MEDIA_ROOT = BASE_DIR / 'media'" in settings.py (for link folder in system, in this folder will create folder 'event_images')
+7.5 Add "MEDIA_URL = '/media/'" in settings.py (for link folder in web)
+7.6 To apply changes - python manage.py makemigrations
+
+8. Admin panel
+8.1 create superuser: python manage.py createsuperuser
+8.2 Go to "http://127.0.0.1:8000/admin/" and log in there
+8.3 Go to admin.py, import class Event to show in admin panel:
+from .models import Event
+admin.site.register(Event)
+8.4 First line - App's name, second - model name
+8.5 click on add event and choose image and type text and Save. First object in db was created
+9. If image don't show -> add in end in file urls.py:  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+and from django.conf import settings
+from django.conf.urls.static import static
+10. To connect db - in settings.py sqlite -> postgresql
+10.1 'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myawesomeblogdb',
+        'USER': 'postgres',
+        'PASSWORD': '***',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
+10.2 python manage.py migrate
