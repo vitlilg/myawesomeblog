@@ -17,6 +17,7 @@
 7.4 Add "MEDIA_ROOT = BASE_DIR / 'media'" in settings.py (for link folder in system, in this folder will create folder 'event_images')
 7.5 Add "MEDIA_URL = '/media/'" in settings.py (for link folder in web)
 7.6 To apply changes - python manage.py makemigrations
+7.7 To save second app - python manage.py migrate
 
 8. Admin panel
 8.1 create superuser: python manage.py createsuperuser
