@@ -38,3 +38,13 @@ from django.conf.urls.static import static
         'HOST': '127.0.0.1',
         'PORT': '5432'
 10.2 python manage.py migrate
+
+11 In urls.py add 'import events.views' and add 'path('', events.views.home, name='home'),'
+12 Create folder 'templates/events' in app 'events' and there create file home.html
+
+13 In file 'home.html' create html's structure, delete repeatable and unused items.
+14 In app events in file views.py in function home add:
+    events = Event.objects
+    return render(request, 'events/home.html', {'events': events})
+15 Then in file home.html add loop {% for event in events.all %} ... {%  endfor %}
+16 When is needed add {{ event.event_image.url }}, {{ event.event_text }}

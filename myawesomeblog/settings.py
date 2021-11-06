@@ -57,7 +57,7 @@ ROOT_URLCONF = 'myawesomeblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'myawesomeblogdb',
         'USER': 'postgres',
         'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'HOST': '192.168.1.14',
         'PORT': '5432'
     }
 }
