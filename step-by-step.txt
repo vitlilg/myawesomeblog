@@ -42,9 +42,57 @@ from django.conf.urls.static import static
 11 In urls.py add 'import events.views' and add 'path('', events.views.home, name='home'),'
 12 Create folder 'templates/events' in app 'events' and there create file home.html
 
-13 In file 'home.html' create html's structure, delete repeatable and unused items.
+13 In file 'home.html' create html's structure with Bootstrap, delete repeatable and unused items.
 14 In app events in file views.py in function home add:
     events = Event.objects
     return render(request, 'events/home.html', {'events': events})
 15 Then in file home.html add loop {% for event in events.all %} ... {%  endfor %}
 16 When is needed add {{ event.event_image.url }}, {{ event.event_text }}
+
+17 In blog app's create file urls.py. In this file add:
+from django.urls import path
+from . import views
+
+urlpatterns = [
+
+    path('', views.showblog, name='showblog'),
+
+]
+18 In main file urls.py add row:
+    path('posts/', include('blog.urls')),
+
+19 Add in views.py:
+def showblog(request):
+    posts = Blog.objects
+    return render(request, 'blog/blog.html', {'posts': posts})
+
+20 Create template in blog/templates/blog file blog.html and add loop as in 15-16
+21 Add link for <h2> in blog.html
+22 To split text add in models.py:
+        def get_summary(self):
+        return self.blog_text[:70]
+    and add {{ post.get_summary }}
+
+23 To add specific post's page need to add in blog/urls.py:
+    path('<int:post_id>/', views.specific_post, name='specific_post'),
+24 In blog/views.py add:
+    def specific_post(request, post_id):
+    post = get_object_or_404(Blog, pk=post_id)
+    return render(request,'blog/specific_post.html', {'post': post})
+25 Create template in blog/templates/blog file specific_post.html and add {{ post.blog_title }}
+
+26 For static files need to create folder static in folder myawesomeblog, add there files
+27 In settings add:
+STATICFILES_DIRS = [
+
+    BASE_DIR / 'myawesomeblog/static/'
+
+]
+STATIC_ROOT = BASE_DIR / 'static'
+28 In CMD type 'python manage.py collectstatic'. It will create new folder static in root directory.
+29 In home.html after tag html add {% load static %} and in div with About me add link href="{% static 'Aboutme.txt' %}"
+30 To add image in home.html use <img src="{% static 'IMG_20150615_183224_1.jpg' %}" height="300" width="300" class="img-fluid">
+31 To add link to blog page in home.html add:
+href="{% url 'showblog' %} (as in urls.py)
+32 To link to specific posts in blog.html add {% url 'specific_post' post.id %}
+33 Create in file specific_post.html structure

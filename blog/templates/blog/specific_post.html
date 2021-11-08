@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>My Awesome blog. Home</title>
+    <title>My awesome blog. Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/album/">
 
@@ -58,7 +58,7 @@
 
 <header>
   <nav class="navbar navbar-expand-lg navbar-light font-italic">
-    <a class="navbar-brand" href="#">My Awesome Blog</a>
+    <a class="navbar-brand" href="{% url 'home' %}">My Awesome Blog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -66,13 +66,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% static 'Aboutme.txt' %}">About Me</a>
+        <a class="nav-link" href="{% static 'aboutme.txt' %}">About Me</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'showblog' %}">Blog</a>
+        <a class="nav-link active" href="{% url 'showblog' %}">Blog</a>
       </li>
     </ul>
   </div>
@@ -81,34 +81,22 @@
 
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <img src="{% static 'IMG_20150615_183224_1.jpg' %}" height="300" width="300" class="img-fluid">
-      <p class="lead text-muted">Hey there<br>I'm exited to see you here!<br>You can write me right now!</p>
-      <p>
-        <a href="mailto:vitlilg.dev@gmail.com" class="btn btn-primary my-2">Mail Me</a>
-      </p>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
+  <div class="album">
     <div class="container">
 
       <div class="row">
 
-        {% for event in events.all %}
+        <div class="col-md">
+          <div class="card">
+              <h2>{{ post.blog_title }}</h2>
+              <img class="card-img-top" src="{{ post.blog_image.url }}">
 
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ event.event_image.url }}">
-
-            <div class="card-body">
-              <p class="card-text">{{ event.event_text }}</p>
-
-            </div>
+              <div class="card-body">
+                  <p class="card-text">{{ post.blog_text }}</p>
+                  <p>{{ post.blog_date }}</p>
+              </div>
           </div>
         </div>
-        {%  endfor %}
       </div>
     </div>
   </div>
