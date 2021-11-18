@@ -11,7 +11,7 @@ local_settings.py
 db.sqlite3-journal
 step-by-step.txt
 #/media
-#/static
+/static/admin
 
 
 # End of https://www.toptal.com/developers/gitignore/api/django
