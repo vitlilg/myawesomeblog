@@ -96,7 +96,9 @@
 
         <div class="col-md-4">
           <div class="card mb-4">
-              <a href="{% url 'specific_post' post.id %}"><h2>{{ post.blog_title }}</h2></a>
+              <a href="{% url 'specific_post' post.id %}">
+                <h2>{{ post.blog_title }}</h2>
+              </a>
               <img class="card-img-top" src="{{ post.blog_image.url }}">
 
               <div class="card-body">
