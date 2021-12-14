@@ -28,21 +28,21 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
 
-# SESSION_COOKIE_SECURE = True
-#
-# SECURE_HSTS_SECONDS = 60
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-#
-# SECURE_REFERRER_POLICY = "no-referrer"
+SESSION_COOKIE_SECURE = True
 
-SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
-# CSRF_COOKIE_SECURE = True
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+SECURE_SSL_REDIRECT = True
+
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
@@ -140,11 +140,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_DIRS = [
-
-    os.path.join(BASE_DIR, 'myawesomeblog/static/'),
-
-]
+# STATICFILES_DIRS = [
+#
+#     os.path.join(BASE_DIR, 'myawesomeblog/static/'),
+#
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
@@ -153,5 +153,5 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/awesome_media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
